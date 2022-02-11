@@ -26,7 +26,7 @@ Suggests: officer, rvg, rio, testthat (>= 2.1.0), knitr, rmarkdown,
         ggthemes, hrbrthemes
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2022-02-07 11:11:39 UTC; paulosouza
+Packaged: 2022-02-11 19:03:40 UTC; paulosouza
 Author: Fanny Meyer [aut],
   Victor Perrier [aut, cre],
   Ian Carroll [ctb] (Faceting support),
@@ -35,4 +35,4 @@ Author: Fanny Meyer [aut],
   Daybrush (Younkue Choi) [cph] (author of moveable JavaScript library),
   Zeno Rocha [cph] (author of clipboard JavaScript library)
 Maintainer: Victor Perrier <victor.perrier@dreamrs.fr>
-Built: R 4.1.2; ; 2022-02-07 11:11:42 UTC; windows
+Built: R 4.1.2; ; 2022-02-11 19:03:44 UTC; windows
