@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Module for choosing data.frame</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for module-chooseData {esquisse}"><tr><td>module-chooseData {esquisse}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Module for choosing data.frame</h2>
+
+<h3>Description</h3>
+
+<p>DEPRECATED, please see package <a href="https://github.com/dreamRs/datamods">datamods</a> for similar features.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+chooseDataUI(id, label = "Data", icon = "database", width = "100%", ...)
+
+chooseDataServer(
+  input,
+  output,
+  session,
+  dataModule = c("GlobalEnv", "ImportFile"),
+  data = NULL,
+  name = NULL,
+  selectVars = TRUE,
+  selectedTypes = c("continuous", "discrete", "time"),
+  coerceVars = FALSE,
+  launchOnStart = TRUE,
+  size = "m"
+)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>id</code></td>
+<td>
+<p>Module's id.</p>
+</td></tr>
+<tr valign="top"><td><code>label</code></td>
+<td>
+<p>Label for button, passed to <code><a href="../../shiny/help/actionButton.html">actionButton</a></code>.</p>
+</td></tr>
+<tr valign="top"><td><code>icon</code></td>
+<td>
+<p>Icon to appears on the button, passed to <code><a href="../../shiny/help/actionButton.html">actionButton</a></code>.</p>
+</td></tr>
+<tr valign="top"><td><code>width</code></td>
+<td>
+<p>Width of button, passed to <code><a href="../../shiny/help/actionButton.html">actionButton</a></code>.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Other arguments passed to <code><a href="../../shiny/help/actionButton.html">actionButton</a></code></p>
+</td></tr>
+<tr valign="top"><td><code>input, output, session</code></td>
+<td>
+<p>standards <code>shiny</code> server arguments.</p>
+</td></tr>
+<tr valign="top"><td><code>dataModule</code></td>
+<td>
+<p>Data module to use, choose between <code>"GlobalEnv"</code>
+(select ad <code>data.frame</code> from Global environment)
+or <code>"ImportFile"</code> (import an external file supported by <code><a href="../../rio/help/import.html">import</a></code>).</p>
+</td></tr>
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>A <code>data.frame</code> to use by default.</p>
+</td></tr>
+<tr valign="top"><td><code>name</code></td>
+<td>
+<p>Character, object's name to use for <code>data</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>selectVars</code></td>
+<td>
+<p>Display module to select variables, <code>TRUE</code> by default.</p>
+</td></tr>
+<tr valign="top"><td><code>selectedTypes</code></td>
+<td>
+<p>Type of variables selected by default in select variables module.
+Possible types are <code>"discrete"</code>, <code>"time"</code>, <code>"continuous"</code> and <code>"id"</code>,
+by default <code>"id"</code> is discarded.</p>
+</td></tr>
+<tr valign="top"><td><code>coerceVars</code></td>
+<td>
+<p>Display module to coerce variables between different class, <code>TRUE</code> by default.</p>
+</td></tr>
+<tr valign="top"><td><code>launchOnStart</code></td>
+<td>
+<p>Opens modal window when the application starts.</p>
+</td></tr>
+<tr valign="top"><td><code>size</code></td>
+<td>
+<p>Size for the modal window.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a <code><a href="../../shiny/help/reactiveValues.html">reactiveValues</a></code> containing the data selected under slot <code>data</code>
+and the name of the selected <code>data.frame</code> under slot <code>name</code>.
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>esquisse</em> version 1.1.0.9000 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

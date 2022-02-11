@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Esquisse Shiny module</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for esquisserServer {esquisse}"><tr><td>esquisserServer {esquisse}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Esquisse Shiny module</h2>
+
+<h3>Description</h3>
+
+<p>DEPRECATED, see <code><a href="../../esquisse/help/esquisse-module.html">esquisse-module</a></code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+esquisserServer(
+  input,
+  output,
+  session,
+  data = NULL,
+  dataModule = c("GlobalEnv", "ImportFile"),
+  sizeDataModule = "m"
+)
+
+esquisserUI(
+  id,
+  header = TRUE,
+  container = esquisseContainer(),
+  choose_data = TRUE,
+  insert_code = FALSE,
+  disable_filters = FALSE
+)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>input, output, session</code></td>
+<td>
+<p>Standards <code>shiny</code> server arguments.</p>
+</td></tr>
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>A <code>reactiveValues</code> with at least a slot <code>data</code> containing a <code>data.frame</code>
+to use in the module. And a slot <code>name</code> corresponding to the name of the <code>data.frame</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>dataModule</code></td>
+<td>
+<p>Data module to use, choose between <code>"GlobalEnv"</code>
+or <code>"ImportFile"</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>sizeDataModule</code></td>
+<td>
+<p>Size for the modal window for selecting data.</p>
+</td></tr>
+<tr valign="top"><td><code>id</code></td>
+<td>
+<p>Module's id.</p>
+</td></tr>
+<tr valign="top"><td><code>header</code></td>
+<td>
+<p>Logical. Display or not <code>esquisse</code> header.</p>
+</td></tr>
+<tr valign="top"><td><code>container</code></td>
+<td>
+<p>Container in which display the addin,
+default is to use <code>esquisseContainer</code>, see examples.
+Use <code>NULL</code> for no container (behavior in versions &lt;= 0.2.1).
+Must be a <code>function</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>choose_data</code></td>
+<td>
+<p>Logical. Display or not the button to choose data.</p>
+</td></tr>
+<tr valign="top"><td><code>insert_code</code></td>
+<td>
+<p>Logical, Display or not a button to insert the ggplot
+code in the current user script (work only in RStudio).</p>
+</td></tr>
+<tr valign="top"><td><code>disable_filters</code></td>
+<td>
+<p>Logical. Disable the menu allowing to filter data used.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A <code>reactiveValues</code> with 3 slots :
+</p>
+
+<ul>
+<li> <p><strong>code_plot</strong> : code to generate plot.
+</p>
+</li>
+<li> <p><strong>code_filters</strong> : a list of length two with code to reproduce filters.
+</p>
+</li>
+<li> <p><strong>data</strong> : <code>data.frame</code> used in plot (with filters applied).
+</p>
+</li></ul>
+
+
+
+<h3>Note</h3>
+
+<p>For the module to display correctly, it is necessary to place
+it in a container with a fixed height. Since version &gt;= 0.2.2, the
+container is added by default.
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>esquisse</em> version 1.1.0.9000 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

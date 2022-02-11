@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Save 'ggplot' module</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for save-ggplot-module {esquisse}"><tr><td>save-ggplot-module {esquisse}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Save <code>ggplot</code> module</h2>
+
+<h3>Description</h3>
+
+<p>Save a <code>ggplot</code> object in various format and resize it before saving.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+save_ggplot_ui(
+  id,
+  output_format = c("png", "pdf", "svg", "jpeg", "bmp", "eps", "tiff")
+)
+
+save_ggplot_modal(
+  id,
+  title = NULL,
+  output_format = c("png", "pdf", "svg", "jpeg", "bmp", "eps", "tiff")
+)
+
+save_ggplot_server(id, plot_rv)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>id</code></td>
+<td>
+<p>Module ID.</p>
+</td></tr>
+<tr valign="top"><td><code>output_format</code></td>
+<td>
+<p>Output formats offered to the user.</p>
+</td></tr>
+<tr valign="top"><td><code>title</code></td>
+<td>
+<p>Modal's title.</p>
+</td></tr>
+<tr valign="top"><td><code>plot_rv</code></td>
+<td>
+<p>A <code>reactiveValues</code> with a slot <code>plot</code> containing a <code>ggplot</code> object.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>No value. Use in UI &amp; server of shiny application.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+library(shiny)
+library(ggplot2)
+library(esquisse)
+
+
+ui &lt;- fluidPage(
+  tags$h2("Save a ggplot"),
+  selectInput("var", "Variable:", names(economics)[-1]),
+  plotOutput("plot", width = "600px"),
+  actionButton("save", "Save this plot")
+)
+
+server &lt;- function(input, output, session) {
+  
+  rv &lt;- reactiveValues(plot = NULL)
+  
+  output$plot &lt;- renderPlot({
+    rv$plot &lt;- ggplot(economics) + 
+      geom_line(aes(date, !!sym(input$var))) + 
+      theme_minimal()
+    rv$plot
+  })
+  
+  observeEvent(input$save, {
+    save_ggplot_modal("ID", "Save plot")
+  })
+  save_ggplot_server("ID", rv)
+}
+
+if (interactive())
+  shinyApp(ui, server)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>esquisse</em> version 1.1.0.9000 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

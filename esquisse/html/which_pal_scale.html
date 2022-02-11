@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Automatically select appropriate color scale</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for which_pal_scale {esquisse}"><tr><td>which_pal_scale {esquisse}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Automatically select appropriate color scale</h2>
+
+<h3>Description</h3>
+
+<p>Automatically select appropriate color scale
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+which_pal_scale(
+  mapping,
+  palette = "ggplot2",
+  data = NULL,
+  fill_type = c("continuous", "discrete"),
+  color_type = c("continuous", "discrete"),
+  reverse = FALSE
+)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>mapping</code></td>
+<td>
+<p>Aesthetics used in <code>ggplot</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>palette</code></td>
+<td>
+<p>Color palette.</p>
+</td></tr>
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>An optional <code>data.frame</code> to choose the right type for variables.</p>
+</td></tr>
+<tr valign="top"><td><code>fill_type, color_type</code></td>
+<td>
+<p>Scale to use according to the variable used
+in <code>fill</code>/<code>color</code> aesthetic : <code>"discrete"</code> or <code>"continuous"</code>.
+Ignored if <code>data</code> is provided: it will be guessed from data.</p>
+</td></tr>
+<tr valign="top"><td><code>reverse</code></td>
+<td>
+<p>Reverse colors order or not.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a <code>list</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+library(ggplot2)
+
+# Automatic guess according to data
+which_pal_scale(
+  mapping = aes(fill = Sepal.Length), 
+  palette = "ggplot2", 
+  data = iris
+)
+which_pal_scale(
+  mapping = aes(fill = Species),
+  palette = "ggplot2", 
+  data = iris
+)
+
+
+# Explicitly specify type
+which_pal_scale(
+  mapping = aes(color = variable), 
+  palette = "Blues", 
+  color_type = "discrete"
+)
+
+
+# Both scales
+which_pal_scale(
+  mapping = aes(color = var1, fill = var2), 
+  palette = "Blues", 
+  color_type = "discrete",
+  fill_type = "continuous"
+)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>esquisse</em> version 1.1.0.9000 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

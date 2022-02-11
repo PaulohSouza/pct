@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Render 'ggplot' module</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for ggplot-output {esquisse}"><tr><td>ggplot-output {esquisse}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Render <code>ggplot</code> module</h2>
+
+<h3>Description</h3>
+
+<p>Display a plot on the client and allow to download it.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+ggplot_output(
+  id,
+  width = "100%",
+  height = "400px",
+  downloads = downloads_labels(),
+  ...
+)
+
+downloads_labels(
+  label = ph("download-simple"),
+  png = tagList(ph("image"), "PNG"),
+  pdf = tagList(ph("file-pdf"), "PDF"),
+  svg = tagList(ph("browsers"), "SVG"),
+  jpeg = tagList(ph("image"), "JPEG"),
+  pptx = tagList(ph("projector-screen"), "PPTX"),
+  more = tagList(ph("gear"), i18n("More options"))
+)
+
+render_ggplot(
+  id,
+  expr,
+  ...,
+  env = parent.frame(),
+  quoted = FALSE,
+  filename = "export-ggplot"
+)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>id</code></td>
+<td>
+<p>Module ID.</p>
+</td></tr>
+<tr valign="top"><td><code>width</code></td>
+<td>
+<p>Width of the plot.</p>
+</td></tr>
+<tr valign="top"><td><code>height</code></td>
+<td>
+<p>Height of the plot.</p>
+</td></tr>
+<tr valign="top"><td><code>downloads</code></td>
+<td>
+<p>Labels for export options, use <code>downloads_labels</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Parameters passed to <code><a href="../../shiny/help/plotOutput.html">shiny::plotOutput()</a></code> (<code>ggplot_output</code>) or <code><a href="../../shiny/help/renderPlot.html">shiny::renderPlot()</a></code> (<code>render_ggplot</code>).</p>
+</td></tr>
+<tr valign="top"><td><code>label</code></td>
+<td>
+<p>Main label for export button</p>
+</td></tr>
+<tr valign="top"><td><code>png, pdf, svg, jpeg, pptx</code></td>
+<td>
+<p>Labels to display in
+export menu, use <code>NULL</code> to disable specific format.</p>
+</td></tr>
+<tr valign="top"><td><code>more</code></td>
+<td>
+<p>Label for &quot;more&quot; button, allowing to launch export modal.</p>
+</td></tr>
+<tr valign="top"><td><code>expr</code></td>
+<td>
+<p>An expression that generates a <code>ggplot</code> object.</p>
+</td></tr>
+<tr valign="top"><td><code>env</code></td>
+<td>
+<p>The environment in which to evaluate expression.</p>
+</td></tr>
+<tr valign="top"><td><code>quoted</code></td>
+<td>
+<p>Is <code>expr</code> a quoted expression (with <code>quote()</code>)? This
+is useful if you want to save an expression in a variable.</p>
+</td></tr>
+<tr valign="top"><td><code>filename</code></td>
+<td>
+<p>A string of the filename to export WITHOUT extension,
+it will be added according to type of export.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>Server-side, a <code>reactiveValues</code> with the plot.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+
+library(shiny)
+library(ggplot2)
+library(esquisse)
+
+
+ui &lt;- fluidPage(
+  tags$h2("ggplot output"),
+  selectInput("var", "Variable:", names(economics)[-1]),
+  ggplot_output("MYID", width = "600px")
+)
+
+server &lt;- function(input, output, session) {
+  
+  render_ggplot("MYID", {
+    ggplot(economics) + 
+      geom_line(aes(date, !!sym(input$var))) + 
+      theme_minimal() + 
+      labs(
+        title = "A cool chart made with ggplot2",
+        subtitle = "that you can export in various format"
+      )
+  })
+}
+
+if (interactive())
+  shinyApp(ui, server)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>esquisse</em> version 1.1.0.9000 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

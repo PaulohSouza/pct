@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Utility to export ggplot objects to PowerPoint</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for ggplot_to_ppt {esquisse}"><tr><td>ggplot_to_ppt {esquisse}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Utility to export ggplot objects to PowerPoint</h2>
+
+<h3>Description</h3>
+
+<p>You can use the RStudio addin to interactively select ggplot objects, or
+directly pass their names to the function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+ggplot_to_ppt(gg = NULL)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>gg</code></td>
+<td>
+<p>character. Name(s) of ggplot object(s), if NULL, launch the Shiny gadget.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>Path to the temporary PowerPoint file.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+
+# Shiny gadget
+if (interactive()) {
+
+ggplot_to_ppt()
+
+
+
+# Or with an object's name
+library(ggplot2)
+p &lt;- ggplot(iris) +
+  geom_point(aes(Sepal.Length, Sepal.Width))
+
+ggplot_to_ppt("p")
+
+}
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>esquisse</em> version 1.1.0.9000 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

@@ -1,0 +1,86 @@
+﻿label;translation
+Update Preview;Atualizar visualização
+Height:;Altura:
+Width:;Largura:
+Filename:;Nome do Ficheiro:
+Filename;Nome do Ficheiro
+Close;Fechar
+More options;Mais opções
+Export chart;Exportar gráfico
+Export to PowerPoint failed...;Exportação para PowerPoint falhou...
+Export format:;Formato de exportação:
+Import data to create a graph;Importar dados
+Display settings;Configurações de tela
+Close Window;Fechar Janela
+Import data;Importar dados
+Show data;Visualizar dados
+Labels & Title;Titulo e legenda
+Plot options;Opções Gráficas
+Appearance;Aparência
+Data;Dados
+Code;Código
+Title:;Titulo:
+Title;Titulo
+Subtitle:;Subtitulo:
+Subtitle;Subtitulo
+Caption:;Legenda:
+Caption;Legenda
+X label:;Titulo eixo X:
+X label;Titulo Eixo Y
+Y label:;Titulo eixo Y:
+Y label;Titulo eixo Y
+Fill label:;Titulo de categorias:
+Fill label;Categorias
+Color label:;Cor do texto :
+Color label;Cor do texto
+Size label:;Tamanho letra:
+Size label;Tamanho letra
+Shape label:;Etiqueta forma:
+Shape label;Etiqueta forma
+Font face:;Fonte:
+Font size:;Tamanho da Fonte:
+Align:;Alinhamento :
+Left;A esquerda
+Center;Centralizado
+Right;Direita
+Color:;Cores
+Ribbon color:;Cor da Linha:
+Point symbol:;Simbolos pontos: :
+Theme:;Tema:
+Legend position:;Posição da legenda :
+Add a smooth line:;Adicione linha de tendência :
+Yes;Sim
+No;Não
+Smooth line span:;Extensão linha de tendência :
+Size for points/lines:;Tamanho de pontos / linhas :
+Facet scales:;Escala de Facetas :
+Facet ncol:;Número colunas [Facetas] :
+Facet nrow:;Número de linhas [Facetas] :
+Numbers of bins:;Número de caixas :
+Scale:;Escala :
+X-Axis limits (empty for none):;Limites do eixo X :
+X-Axis transform:;Transformação do eixo X :
+Y-Axis limits (empty for none):;Limite do eixo Y :
+Y-Axis transform:;Transformação do eixo Y :
+Bandwidth adjustment:;Ajuste de largura de banda :
+Position:;Posição :
+Flip coordinate:;Inverter coordenadas :
+Copy to clipboard;Copiar para área de transferência
+Code:;Código:
+Insert code in script;Inserir código de script
+Esquisse settings;Parâmetros e configurações
+Select aesthetics to be used to build a graph:;Selecione a estética a ser usada para construir um gráfico:
+Aesthetic mappings describe how variables in the data are mapped to visual properties (aesthetics) of geoms.;Os mapeamentos estéticos descrevem como as variáveis nos dados são mapeadas para propriedades visuais (estéticas) de geometrias.
+fill color for shapes;cor de preenchimento para formas
+color points and lines;cor de preenchimento para pontos e linhas
+size of the points;tamanho de pontos
+shape of the points;forma dos pontos
+frequency weights;pesos de frequência
+identifies series of points with a grouping variable;identifica uma série de pontos com uma variável de agrupamento
+used in ribbons charts with ymax to display an interval between two lines;usado em gráficos de fitas com ymax para exibir um intervalo entre duas linhas
+used in ribbons charts with ymin to display an interval between two lines;usado em gráficos de fitas com ymin para exibir um intervalo entre duas linhas
+create small multiples;criar pequenos múltiplos
+create small multiples by rows;criar pequenos múltiplos por linhas
+create small multiples by columns;criar pequenos múltiplos por colunas
+Dataset;Conjunto de dados
+Jittered points:;Ajustar pontos (dispersão):

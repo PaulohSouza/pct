@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Potential geometries according to the data</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for potential_geoms {esquisse}"><tr><td>potential_geoms {esquisse}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Potential geometries according to the data</h2>
+
+<h3>Description</h3>
+
+<p>Potential geometries according to the data
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+potential_geoms(data, mapping, auto = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>A <code>data.frame</code></p>
+</td></tr>
+<tr valign="top"><td><code>mapping</code></td>
+<td>
+<p>List of aesthetic mappings to use with data.</p>
+</td></tr>
+<tr valign="top"><td><code>auto</code></td>
+<td>
+<p>Return only one geometry.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A <code>character</code> vector
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+
+library(ggplot2)
+
+# One continuous variable
+potential_geoms(
+  data = iris,
+  mapping = aes(x = Sepal.Length)
+)
+
+# Automatic pick a geom
+potential_geoms(
+  data = iris,
+  mapping = aes(x = Sepal.Length),
+  auto = TRUE
+)
+
+# One discrete variable
+potential_geoms(
+  data = iris,
+  mapping = aes(x = Species)
+)
+
+# Two continuous variables
+potential_geoms(
+  data = iris,
+  mapping = aes(x = Sepal.Length, y = Sepal.Width)
+)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>esquisse</em> version 1.1.0.9000 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

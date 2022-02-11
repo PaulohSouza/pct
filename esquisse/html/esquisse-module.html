@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Esquisse module</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for esquisse-module {esquisse}"><tr><td>esquisse-module {esquisse}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Esquisse module</h2>
+
+<h3>Description</h3>
+
+<p>Use esquisse as a module in a Shiny application.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+esquisse_ui(
+  id,
+  header = TRUE,
+  container = esquisseContainer(),
+  controls = c("labs", "parameters", "appearance", "filters", "code"),
+  insert_code = FALSE
+)
+
+esquisse_server(
+  id,
+  data_rv = NULL,
+  default_aes = c("fill", "color", "size", "group", "facet"),
+  import_from = c("env", "file", "copypaste", "googlesheets")
+)
+
+esquisseContainer(width = "100%", height = "700px", fixed = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>id</code></td>
+<td>
+<p>Module ID.</p>
+</td></tr>
+<tr valign="top"><td><code>header</code></td>
+<td>
+<p>Logical. Display or not <code>esquisse</code> header.</p>
+</td></tr>
+<tr valign="top"><td><code>container</code></td>
+<td>
+<p>Container in which display the addin,
+default is to use <code>esquisseContainer</code>, see examples.
+Use <code>NULL</code> for no container (behavior in versions &lt;= 0.2.1).
+Must be a <code>function</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>controls</code></td>
+<td>
+<p>Controls menu to be displayed. Use <code>NULL</code> to hide all menus.</p>
+</td></tr>
+<tr valign="top"><td><code>insert_code</code></td>
+<td>
+<p>Logical, Display or not a button to insert the ggplot
+code in the current user script (work only in RStudio).</p>
+</td></tr>
+<tr valign="top"><td><code>data_rv</code></td>
+<td>
+<p>A <code>reactiveValues</code> with at least a slot <code>data</code> containing a <code>data.frame</code>
+to use in the module. And a slot <code>name</code> corresponding to the name of the <code>data.frame</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>default_aes</code></td>
+<td>
+<p>Default aesthetics to be used, can be a <code>character</code>
+vector or <code>reactive</code> function returning one.</p>
+</td></tr>
+<tr valign="top"><td><code>import_from</code></td>
+<td>
+<p>From where to import data, argument passed
+to <code><a href="../../datamods/help/import-modal.html">datamods::import_ui</a></code>.</p>
+</td></tr>
+<tr valign="top"><td><code>width, height</code></td>
+<td>
+<p>The width and height of the container, e.g. <code>"400px"</code>,
+or <code>"100%"</code>; see <code><a href="../../htmltools/help/validateCssUnit.html">validateCssUnit</a></code>.</p>
+</td></tr>
+<tr valign="top"><td><code>fixed</code></td>
+<td>
+<p>Use a fixed container, e.g. to use use esquisse full page.
+If <code>TRUE</code>, width and height are ignored. Default to <code>FALSE</code>.
+It's possible to use a vector of CSS unit of length 4 to specify the margins
+(top, right, bottom, left).</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A <code>reactiveValues</code> with 3 slots :
+</p>
+
+<ul>
+<li> <p><strong>code_plot</strong> : code to generate plot.
+</p>
+</li>
+<li> <p><strong>code_filters</strong> : a list of length two with code to reproduce filters.
+</p>
+</li>
+<li> <p><strong>data</strong> : <code>data.frame</code> used in plot (with filters applied).
+</p>
+</li></ul>
+
+
+
+<h3>Examples</h3>
+
+<pre>
+
+### Part of a Shiny app ###
+
+library(shiny)
+library(esquisse)
+
+ui &lt;- fluidPage(
+  tags$h1("Use esquisse as a Shiny module"),
+  
+  radioButtons(
+    inputId = "data", 
+    label = "Data to use:", 
+    choices = c("iris", "mtcars"),
+    inline = TRUE
+  ),
+  checkboxGroupInput(
+    inputId = "aes", 
+    label = "Aesthetics to use:", 
+    choices = c(
+      "fill", "color", "size", "shape", 
+      "weight", "group", "facet", "facet_row", "facet_col"
+    ),
+    selected = c("fill", "color", "size", "facet"),
+    inline = TRUE
+  ),
+  esquisse_ui(
+    id = "esquisse", 
+    header = FALSE, # dont display gadget title
+    container = esquisseContainer(height = "700px")
+  )
+)
+
+server &lt;- function(input, output, session) {
+  
+  data_rv &lt;- reactiveValues(data = iris, name = "iris")
+  
+  observeEvent(input$data, {
+    if (input$data == "iris") {
+      data_rv$data &lt;- iris
+      data_rv$name &lt;- "iris"
+    } else {
+      data_rv$data &lt;- mtcars
+      data_rv$name &lt;- "mtcars"
+    }
+  })
+  
+  esquisse_server(
+    id = "esquisse", 
+    data_rv = data_rv, 
+    default_aes = reactive(input$aes)
+  )
+  
+}
+
+if (interactive())
+  shinyApp(ui, server)
+
+
+### Whole Shiny app ###
+
+library(shiny)
+library(esquisse)
+
+
+# Load some datasets in app environment
+my_data &lt;- data.frame(
+  var1 = rnorm(100),
+  var2 = sample(letters[1:5], 100, TRUE)
+)
+
+
+ui &lt;- fluidPage(
+  esquisse_ui(
+    id = "esquisse", 
+    container = esquisseContainer(fixed = TRUE)
+  )
+)
+
+server &lt;- function(input, output, session) {
+  
+  esquisse_server(id = "esquisse")
+  
+}
+
+if (interactive())
+  shinyApp(ui, server)
+
+
+
+## You can also use a vector of margins for the fixed argument,
+# useful if you have a navbar for example
+
+library(shiny)
+library(esquisse)
+library(datamods)
+
+ui &lt;- navbarPage(
+  title = "My navbar app",
+  tabPanel(
+    title = "esquisse",
+    esquisse_ui(
+      id = "esquisse", 
+      header = FALSE,
+      container = esquisseContainer(
+        fixed = c(55, 0, 0, 0)
+      )
+    )
+  )
+)
+
+server &lt;- function(input, output, session) {
+  
+  # lauch import data modal
+  import_modal(
+    id = "import-data",
+    from = c("env", "file", "copypaste"),
+    title = "Import data"
+  )
+  data_imported_r &lt;- datamods::import_server("import-data")
+
+  data_rv &lt;- reactiveValues(data = data.frame())
+  observeEvent(data_imported_r$data(), {
+    data_rv$data &lt;- data_imported_r$data()
+    data_rv$name &lt;- data_imported_r$name()
+  })
+  
+  esquisse_server(id = "esquisse", data_rv = data_rv)
+  
+}
+
+if (interactive())
+  shinyApp(ui, server)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>esquisse</em> version 1.1.0.9000 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

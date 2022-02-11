@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Match list of arguments to arguments of geometry</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for match_geom_args {esquisse}"><tr><td>match_geom_args {esquisse}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Match list of arguments to arguments of geometry</h2>
+
+<h3>Description</h3>
+
+<p>Match list of arguments to arguments of geometry
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+match_geom_args(
+  geom,
+  args,
+  add_aes = TRUE,
+  mapping = list(),
+  envir = "ggplot2"
+)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>geom</code></td>
+<td>
+<p>Character. name of the geometry.</p>
+</td></tr>
+<tr valign="top"><td><code>args</code></td>
+<td>
+<p>Named list, parameters to be matched to the geometry arguments.</p>
+</td></tr>
+<tr valign="top"><td><code>add_aes</code></td>
+<td>
+<p>Add aesthetics parameters (like size, fill, ...).</p>
+</td></tr>
+<tr valign="top"><td><code>mapping</code></td>
+<td>
+<p>Mapping used in plot, to avoid setting fixed aesthetics parameters.</p>
+</td></tr>
+<tr valign="top"><td><code>envir</code></td>
+<td>
+<p>Package environment to search in.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a <code>list</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# List of parameters
+params &lt;- list(
+  bins = 30,
+  scale = "width",
+  adjust = 2,
+  position = "stack",
+  size = 1.6,
+  fill = "#112246"
+)
+
+# Search arguments according to geom
+match_geom_args(geom = "histogram", args = params)
+match_geom_args(geom = "violin", args = params)
+match_geom_args(geom = "bar", args = params, add_aes = FALSE)
+match_geom_args(geom = "point", args = params)
+match_geom_args(geom = "point", args = params, add_aes = FALSE)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>esquisse</em> version 1.1.0.9000 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

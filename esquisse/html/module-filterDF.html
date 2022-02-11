@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Shiny module to interactively filter a 'data.frame'</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for module-filterDF {esquisse}"><tr><td>module-filterDF {esquisse}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Shiny module to interactively filter a <code>data.frame</code></h2>
+
+<h3>Description</h3>
+
+<p>DEPRECATED, please see package <a href="https://github.com/dreamRs/datamods">datamods</a> for similar features.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+filterDF_UI(id, show_nrow = TRUE)
+
+filterDF(
+  input,
+  output,
+  session,
+  data_table = reactive(),
+  data_vars = shiny::reactive(NULL),
+  data_name = reactive("data"),
+  label_nrow = "Number of rows:",
+  drop_ids = TRUE,
+  picker = FALSE
+)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>id</code></td>
+<td>
+<p>Module id. See <code><a href="../../shiny/help/callModule.html">callModule</a></code>.</p>
+</td></tr>
+<tr valign="top"><td><code>show_nrow</code></td>
+<td>
+<p>Show number of filtered rows and total.</p>
+</td></tr>
+<tr valign="top"><td><code>input, output, session</code></td>
+<td>
+<p>standards <code>shiny</code> server arguments.</p>
+</td></tr>
+<tr valign="top"><td><code>data_table</code></td>
+<td>
+<p><code><a href="../../shiny/help/reactive.html">reactive</a></code> function returning a
+<code>data.frame</code> to filter.</p>
+</td></tr>
+<tr valign="top"><td><code>data_vars</code></td>
+<td>
+<p><code><a href="../../shiny/help/reactive.html">reactive</a></code> function returning a
+<code>character</code> vector of variable to use for filters.</p>
+</td></tr>
+<tr valign="top"><td><code>data_name</code></td>
+<td>
+<p><code><a href="../../shiny/help/reactive.html">reactive</a></code> function returning a
+<code>character</code> string representing <code>data_table</code> name.</p>
+</td></tr>
+<tr valign="top"><td><code>label_nrow</code></td>
+<td>
+<p>Text to display before the number of rows of filtered data / source data.</p>
+</td></tr>
+<tr valign="top"><td><code>drop_ids</code></td>
+<td>
+<p>Drop columns containing more than 90% of unique values, or than 50 distinct values.</p>
+</td></tr>
+<tr valign="top"><td><code>picker</code></td>
+<td>
+<p>Use  <code><a href="../../shinyWidgets/help/pickerInput.html">shinyWidgets::pickerInput</a></code>
+instead of  <code><a href="../../shiny/help/selectInput.html">shiny::selectizeInput</a></code> (default).</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A <code>list</code> with 2 elements :
+</p>
+
+<ul>
+<li> <p><strong>data_filtered</strong> : <code><a href="../../shiny/help/reactive.html">reactive</a></code> function returning data filtered.
+</p>
+</li>
+<li> <p><strong>code</strong> : <code><a href="../../shiny/help/reactiveValues.html">reactiveValues</a></code> with 2 slots :
+<code>expr</code> (raw expression to filter data) and <code>dplyr</code> (code with dplyr pipeline).
+</p>
+</li></ul>
+
+
+<hr /><div style="text-align: center;">[Package <em>esquisse</em> version 1.1.0.9000 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: An add-in to easily create plots with ggplot2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for esquisser {esquisse}"><tr><td>esquisser {esquisse}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>An add-in to easily create plots with ggplot2</h2>
+
+<h3>Description</h3>
+
+<p>Select data to be used and map variables to aesthetics to produce a chart,
+customize common elements and get code to reproduce the chart.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+esquisser(
+  data = NULL,
+  controls = c("labs", "parameters", "appearance", "filters", "code"),
+  viewer = getOption(x = "esquisse.viewer", default = "dialog")
+)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>a <code>data.frame</code>, you can pass a <code>data.frame</code> explicitly to the function,
+otherwise you'll have to choose one in global environment.</p>
+</td></tr>
+<tr valign="top"><td><code>controls</code></td>
+<td>
+<p>Controls menu to be displayed. Use <code>NULL</code> to hide all menus.</p>
+</td></tr>
+<tr valign="top"><td><code>viewer</code></td>
+<td>
+<p>Where to display the gadget: <code>"dialog"</code>,
+<code>"pane"</code> or <code>"browser"</code> (see <code><a href="../../shiny/help/viewer.html">viewer</a></code>).</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p><code>NULL</code>. You can view code used to produce the chart, copy it or insert it in current script.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+if (interactive()) {
+# Launch with :
+esquisser(iris)
+# If in RStudio it will be launched by default in dialog window
+# If not, it will be launched in browser
+
+# Launch esquisse in browser :
+esquisser(iris, viewer = "browser")
+
+# You can set this option in .Rprofile :
+options("esquisse.viewer" = "viewer")
+# or
+options("esquisse.viewer" = "browser")
+
+# esquisse use shiny::runApp
+# see ?shiny::runApp to see options
+# available, example to use custom port:
+
+options("shiny.port" = 8080)
+esquisser(iris, viewer = "browser")
+
+}
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>esquisse</em> version 1.1.0.9000 <a href="00Index.html">Index</a>]</div>
+</div></body></html>
